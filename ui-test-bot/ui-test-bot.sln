@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ui-test-bot", "ui-test-bot\ui-test-bot.csproj", "{04A2BBA9-C21B-47A0-9B1C-FE9A45CCC776}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ui-test-bot", "ui-test-bot\ui-test-bot.csproj", "{B16A8A3D-BBE8-4A96-842E-EC994D14979D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{04A2BBA9-C21B-47A0-9B1C-FE9A45CCC776}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{04A2BBA9-C21B-47A0-9B1C-FE9A45CCC776}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{04A2BBA9-C21B-47A0-9B1C-FE9A45CCC776}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{04A2BBA9-C21B-47A0-9B1C-FE9A45CCC776}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B16A8A3D-BBE8-4A96-842E-EC994D14979D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B16A8A3D-BBE8-4A96-842E-EC994D14979D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B16A8A3D-BBE8-4A96-842E-EC994D14979D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B16A8A3D-BBE8-4A96-842E-EC994D14979D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		BuildVersion_StartDate = 2000/1/1
 		SolutionGuid = {5283A4F8-FBBD-44A6-A7B8-7628A3CB861E}
 	EndGlobalSection
 EndGlobal
