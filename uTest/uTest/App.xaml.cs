@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace ui_test_bot
+namespace uTest
 {
     /// <summary>
     /// Interaction logic for App.xaml

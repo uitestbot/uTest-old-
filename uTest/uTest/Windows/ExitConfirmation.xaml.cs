@@ -12,14 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace ui_test_bot
+namespace uTest
 {
     /// <summary>
     /// Interaction logic for ExitConfirmation.xaml
     /// </summary>
     public partial class ExitConfirmation : Window
     {
-        public Dashboard OwningWindow { get; set; }
+        public MainWindow OwningWindow { get; set; }
 
         public ExitConfirmation()
         {

@@ -14,30 +14,40 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ui_test_bot
+namespace uTest
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class Dashboard : Window
+    public partial class MainWindow : Window
     {
-        public Dashboard()
+        public MainWindow()
         {
             InitializeComponent();
-            versionLabel.Content = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            versionLabel.Content = String.Format("v.{0}", Assembly.GetExecutingAssembly().GetName().Version.ToString());
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             this.IsEnabled = false;
+
             ExitConfirmation exitConfirmation = new ExitConfirmation();
             exitConfirmation.OwningWindow = this;
             exitConfirmation.Show();
+
+            exitConfirmation.Left = this.Left + (this.Width - exitConfirmation.ActualWidth) / 2;
+            exitConfirmation.Top = this.Top + (this.Height - exitConfirmation.ActualHeight) / 2;
         }
 
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
         }
 
     }
