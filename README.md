@@ -1,2 +1,2 @@
-# ui-test-bot
+# uTest
 UI Test Automation Tool
