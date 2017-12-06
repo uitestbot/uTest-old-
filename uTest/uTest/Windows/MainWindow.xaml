@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:uTest"
         mc:Ignorable="d"
-        Title="Auto Test Bot" Height="650" Width="1100" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#FF222222" WindowStyle="None" MouseDown="Window_MouseDown" BorderBrush="#FF127A96" BorderThickness="1">
+        Title="uTest" Height="650" Width="1100" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#FF222222" WindowStyle="None" MouseDown="Window_MouseDown" BorderBrush="#FF127A96" BorderThickness="1">
     <Window.Resources>
         <Style x:Key="LabelMouseOver" TargetType="Label">
             <Setter Property= "Foreground" Value="#FFBABABA" />
+            <Setter Property="FontSize" Value="26" />
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Foreground" Value="#FF127A96"/>
@@ -31,24 +32,22 @@
             <ColumnDefinition Width="0*"/>
             <ColumnDefinition Width="7*"/>
             <ColumnDefinition Width="187*"/>
-            <ColumnDefinition Width="260*"/>
-            <ColumnDefinition Width="646*"/>
+            <ColumnDefinition Width="906*"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="titleLabel" Content="uTest" Grid.Column="2" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="186" FontSize="40" RenderTransformOrigin="0.489,0.39" Margin="27,10,0,0" Grid.RowSpan="2" Grid.ColumnSpan="2" />
-        <Rectangle x:Name="titleLeftDecoration" Grid.Column="1" Fill="#FF127A96" HorizontalAlignment="Left" Height="50" Grid.Row="1" VerticalAlignment="Stretch" Width="7"/>
-        <Button Content="X" Grid.Column="4" HorizontalAlignment="Left" Height="11" Margin="584,10,0,10" Grid.Row="1" VerticalAlignment="Center" Width="18" RenderTransformOrigin="0.508,0.192" FontSize="16" Click="ExitButton_Click"/>
-        <Button x:Name="minimineButton" Content="_" Grid.Column="4" HorizontalAlignment="Left" Height="11" Margin="546,10,0,10" Grid.Row="1" VerticalAlignment="Center" Width="18" RenderTransformOrigin="0.508,0.192" FontSize="16" Click="MinimizeButton_Click"/>
-        <Rectangle x:Name="titleRightDecoration" Grid.Column="2" Fill="#FF127A96" HorizontalAlignment="Left" Height="2" Margin="145,24,0,0" Grid.Row="1" VerticalAlignment="Top" Width="826" Grid.ColumnSpan="3"/>
-        <Label x:Name="versionLabel" Content="version" Grid.Column="2" HorizontalAlignment="Left" Height="22" Margin="142,5,0,0" VerticalAlignment="Top" Width="85" FontSize="11" AutomationProperties.Name="version" Grid.ColumnSpan="2" Grid.Row="1" FontStyle="Italic"/>
+        <Label x:Name="titleLabel" Panel.ZIndex="1" Content="uTest"  HorizontalContentAlignment="Center" Grid.Column="3" HorizontalAlignment="Left" Height="56" VerticalAlignment="Top" Width="136" FontSize="40" RenderTransformOrigin="0.489,0.39" Margin="86,10,0,0" Grid.RowSpan="2" Background="#FF222222" FontFamily="Rockwell" Foreground="#FF127A96" />
+        <Button x:Name="exitButton" Content="X" Grid.Column="3" HorizontalAlignment="Left" Height="11" Margin="851,10,0,10" Grid.Row="1" VerticalAlignment="Center" Width="18" RenderTransformOrigin="0.508,0.192" FontSize="16" Click="ExitButton_Click"/>
+        <Button x:Name="minimineButton" Content="_" Grid.Column="3" HorizontalAlignment="Left" Height="11" Margin="807,10,0,10" Grid.Row="1" VerticalAlignment="Center" Width="18" RenderTransformOrigin="0.508,0.192" FontSize="16" Click="MinimizeButton_Click"/>
+        <Rectangle x:Name="titleRightDecoration" Grid.Column="2" Fill="#FF127A96" HorizontalAlignment="Left" Height="2" Margin="17,24,0,0" Grid.Row="1" VerticalAlignment="Top" Width="952" Grid.ColumnSpan="2"/>
+        <Label x:Name="versionLabel" Content="version" Grid.Column="2" HorizontalAlignment="Left" Height="22" Margin="55,328,0,0" VerticalAlignment="Top" Width="85" FontSize="11" AutomationProperties.Name="version" FontStyle="Italic" Grid.Row="7"/>
         <Frame x:Name="menuFrame" Grid.Column="2" HorizontalAlignment="Left" Height="539" Grid.Row="3" Grid.RowSpan="4" VerticalAlignment="Top" Width="177"/>
         <Rectangle x:Name="menu1Decoration" Grid.Column="1" Fill="#FF127A96" HorizontalAlignment="Left" Height="50" Grid.Row="3" VerticalAlignment="Stretch" Width="7"/>
         <Rectangle x:Name="menu2Decoration" Grid.Column="1" Fill="#FF222222" HorizontalAlignment="Left" Height="50" Grid.Row="4" VerticalAlignment="Stretch" Width="7"/>
         <Rectangle x:Name="menu3Decoration" Grid.Column="1" Fill="#FF222222" HorizontalAlignment="Left" Height="50" Grid.Row="5" VerticalAlignment="Stretch" Width="7"/>
         <Rectangle x:Name="menu4Decoration" Grid.Column="1" Fill="#FF222222" HorizontalAlignment="Left" Height="50" Grid.Row="6" VerticalAlignment="Stretch" Width="7"/>
-        <Label x:Name="menu1Title" Content="Dashboard" Grid.Column="2" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="186" FontSize="30" RenderTransformOrigin="0.489,0.39" Margin="1,16,0,0" Grid.RowSpan="2" Grid.Row="2" Style="{StaticResource LabelMouseOver}" />
-        <Label x:Name="menu2Title" Content="History" Grid.Column="2" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="186" FontSize="30" RenderTransformOrigin="0.489,0.39" Margin="1,46,0,0" Grid.RowSpan="2" Grid.Row="3" Style="{StaticResource LabelMouseOver}" />
-        <Label x:Name="menu3Title" Content="Implement" Grid.Column="2" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="186" FontSize="30" RenderTransformOrigin="0.489,0.39" Margin="1,46,0,0" Grid.RowSpan="2" Grid.Row="4" Style="{StaticResource LabelMouseOver}" />
-        <Label x:Name="menu4Title" Content="Settings" Grid.Column="2" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="186" FontSize="30" RenderTransformOrigin="0.489,0.39" Margin="1,46,0,0" Grid.RowSpan="2" Grid.Row="5" Style="{StaticResource LabelMouseOver}" />
-        <Frame x:Name="mainFrame" Content="" HorizontalAlignment="Left" Height="550" Grid.RowSpan="5" VerticalAlignment="Top" Width="886" Grid.Column="3" Margin="10,0,0,0" Grid.Row="3" Grid.ColumnSpan="2"/>
+        <Label x:Name="menu1Title" Content="Dashboard" Grid.Column="2" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="186" RenderTransformOrigin="0.489,0.39" Margin="8,0,0,0" Grid.RowSpan="2" Grid.Row="3" Style="{StaticResource LabelMouseOver}" Grid.ColumnSpan="2" MouseLeftButtonDown="Menu1Title_MouseLeftButtonUp" />
+        <Label x:Name="menu2Title" Content="History" Grid.Column="2" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="186" RenderTransformOrigin="0.489,0.39" Margin="8,0,0,0" Grid.RowSpan="2" Grid.Row="4" Style="{StaticResource LabelMouseOver}" Grid.ColumnSpan="2" MouseLeftButtonDown="Menu2Title_MouseLeftButtonUp" />
+        <Label x:Name="menu3Title" Content="Implement" Grid.Column="2" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="186" RenderTransformOrigin="0.489,0.39" Margin="8,0,0,0" Grid.RowSpan="2" Grid.Row="5" Style="{StaticResource LabelMouseOver}" Grid.ColumnSpan="2" MouseLeftButtonDown="Menu3Title_MouseLeftButtonUp"/>
+        <Label x:Name="menu4Title" Content="Settings" Grid.Column="2" HorizontalAlignment="Left" Height="54" VerticalAlignment="Top" Width="186" RenderTransformOrigin="0.489,0.39" Margin="8,0,0,0" Grid.RowSpan="2" Grid.Row="6" Style="{StaticResource LabelMouseOver}" Grid.ColumnSpan="2" MouseLeftButtonDown="Menu4Title_MouseLeftButtonUp"/>
+        <Frame x:Name="mainFrame" Content="" HorizontalAlignment="Left" Height="550" Grid.RowSpan="5" VerticalAlignment="Top" Width="886" Grid.Column="3" Margin="10,0,0,0" Grid.Row="3" Grid.ColumnSpan="2" NavigationUIVisibility="Hidden" />
     </Grid>
 </Window>

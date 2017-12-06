@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using uTest.Pages;
 
 namespace uTest
 {
@@ -21,10 +22,20 @@ namespace uTest
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static Dashboard dashboard = null;
+        private static History history = null;
+        private static Implement implement = null;
+        private static Settings settings = null;
+
         public MainWindow()
         {
             InitializeComponent();
             versionLabel.Content = String.Format("v.{0}", Assembly.GetExecutingAssembly().GetName().Version.ToString());
+            if (dashboard == null)
+            {
+                dashboard = new Dashboard();
+            }
+            mainFrame.Content = dashboard;
         }
 
         private void ExitButton_Click(object sender, RoutedEventArgs e)
@@ -48,6 +59,62 @@ namespace uTest
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
+        }
+
+        private void Menu1Title_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (dashboard == null)
+            {
+                dashboard = new Dashboard();
+            }
+            mainFrame.Content = dashboard;
+
+            menu1Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF127A96"));
+            menu2Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
+            menu3Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
+            menu4Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
+        }
+
+        private void Menu2Title_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (history == null)
+            {
+                history = new History();
+            }
+            mainFrame.Content = history;
+
+            menu1Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
+            menu2Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF127A96"));
+            menu3Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
+            menu4Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
+        }
+
+        private void Menu3Title_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (implement == null)
+            {
+                implement = new Implement();
+            }
+            mainFrame.Content = implement;
+
+            menu1Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
+            menu2Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
+            menu3Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF127A96"));
+            menu4Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
+        }
+
+        private void Menu4Title_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (settings == null)
+            {
+                settings = new Settings();
+            }
+            mainFrame.Content = settings;
+
+            menu1Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
+            menu2Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
+            menu3Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
+            menu4Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF127A96"));
         }
 
     }

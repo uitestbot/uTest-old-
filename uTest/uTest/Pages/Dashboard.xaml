@@ -1,0 +1,15 @@
+﻿<Page x:Class="uTest.Pages.Dashboard"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:uTest.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="886"
+      Title="Dashboard">
+
+    <Grid>
+        <Label Content="Under construction dashboard page" HorizontalAlignment="Left" Height="108" Margin="333,136,0,0" VerticalAlignment="Top" Width="305" Foreground="#FF127A96" FontSize="16"/>
+
+    </Grid>
+</Page>

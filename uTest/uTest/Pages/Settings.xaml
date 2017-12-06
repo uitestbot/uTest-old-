@@ -1,0 +1,35 @@
+﻿<Page x:Class="uTest.Pages.Settings"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:uTest.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="886"
+      Title="Settings" Background="#FF222222">
+
+    <Grid>
+        <Rectangle x:Name="TestRailGroup" HorizontalAlignment="Left" Height="244" Margin="39,10,0,0" VerticalAlignment="Top" Width="412" Stroke="#FF127A96" StrokeThickness="1" StrokeDashArray="4 4"/>
+        <Rectangle x:Name="ExecutionGroup" HorizontalAlignment="Left" Height="244" Margin="492,10,0,0" VerticalAlignment="Top" Width="355" Stroke="#FF127A96" StrokeThickness="1" StrokeDashArray="4 4"/>
+        <Label x:Name="TestRailGroup_Label" Content="Test Rail" HorizontalAlignment="Left" Height="36" Margin="89,10,0,0" VerticalAlignment="Top" Width="316" Foreground="#FF127A96" FontSize="20" HorizontalContentAlignment="Center" FontStyle="Italic" />
+        <Label x:Name="HostLabel" Content="Host" HorizontalAlignment="Left" Height="36" Margin="67,59,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF127A96" FontSize="18" HorizontalContentAlignment="Left" />
+        <TextBox x:Name="TestRailHostTextBox" HorizontalAlignment="Left" Height="23" Margin="195,64,0,0" TextWrapping="Wrap" Text="http://10.0.33.57/" VerticalAlignment="Top" Width="222" FontSize="14"/>
+        <Label x:Name="UsernameLabel" Content="Username" HorizontalAlignment="Left" Height="36" Margin="67,100,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF127A96" FontSize="18" HorizontalContentAlignment="Left" />
+        <TextBox x:Name="TestRailUserNameTextBox" HorizontalAlignment="Left" Height="23" Margin="195,105,0,0" TextWrapping="Wrap" Text="sevim.ataseven@comodo.com" VerticalAlignment="Top" Width="222" FontSize="14"/>
+        <Label x:Name="PasswordLabel" Content="Password" HorizontalAlignment="Left" Height="36" Margin="67,141,0,0" VerticalAlignment="Top" Width="120" Foreground="#FF127A96" FontSize="18" HorizontalContentAlignment="Left" />
+        <PasswordBox x:Name="TestRailPasswordBox" HorizontalAlignment="Left" Height="23" Margin="195,146,0,0" VerticalAlignment="Top" Width="222" Password="browser" FontSize="14"/>
+        <CheckBox x:Name="ReportCheckbox" Content="Report results on TestRail" HorizontalAlignment="Left" Margin="67,182,0,0" VerticalAlignment="Top" Foreground="#FF127A96" Width="277" IsChecked="True" />
+        <Button x:Name="TestConnectionButton" Content="Test connection" HorizontalAlignment="Left" Margin="185,212,0,0" VerticalAlignment="Top" Width="124" RenderTransformOrigin="0.493,0.5"/>
+        <Label x:Name="ExecutionGroup_Label" Content="Execution" HorizontalAlignment="Left" Height="36" Margin="513,10,0,0" VerticalAlignment="Top" Width="316" Foreground="#FF127A96" FontSize="20" HorizontalContentAlignment="Center" FontStyle="Italic" />
+        <Label x:Name="RepeatTestLabel" Content="Repeat test if failed" HorizontalAlignment="Left" Height="36" Margin="522,100,0,0" VerticalAlignment="Top" Width="195" Foreground="#FF127A96" FontSize="18" HorizontalContentAlignment="Left" />
+        <Label x:Name="SpeedMultiplierLabel" Content="Speed multiplier" HorizontalAlignment="Left" Height="36" Margin="522,136,0,0" VerticalAlignment="Top" Width="195" Foreground="#FF127A96" FontSize="18" HorizontalContentAlignment="Left" />
+        <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="286,510,0,0" VerticalAlignment="Top" Width="124" RenderTransformOrigin="0.493,0.5"/>
+        <Button x:Name="ResetButton" Content="Reset to the default values" HorizontalAlignment="Left" Margin="432,510,0,0" VerticalAlignment="Top" Width="199" RenderTransformOrigin="0.493,0.5" IsEnabled="False"/>
+
+        <Slider x:Name="RepeatTestSlider" IsSnapToTickEnabled="True" HorizontalAlignment="Left" Margin="701,110,0,0" VerticalAlignment="Top" Value="2" Minimum="1" Maximum="4" SmallChange="1" Width="84" Cursor="Hand" Foreground="#FF127A8F"/>
+        <TextBox x:Name="RepeatTestTextBox" Text="{Binding ElementName=RepeatTestSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" Margin="791,104,57,416" HorizontalContentAlignment="Center" IsEnabled="False" />
+
+        <Slider x:Name="SpeedMultiplierSlider" IsSnapToTickEnabled="True" HorizontalAlignment="Left" Margin="701,146,0,0" VerticalAlignment="Top" Value="1" Minimum="0.5" Maximum="4" SmallChange="0.5" Width="84" TickFrequency="0.5" Cursor="Hand" Foreground="#FF127A8F" LargeChange="0.5"/>
+        <TextBox x:Name="SpeedMultiplierTextBox" Text="{Binding ElementName=SpeedMultiplierSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" Margin="791,140,57,380" HorizontalContentAlignment="Center" IsEnabled="False" />
+    </Grid>
+</Page>
