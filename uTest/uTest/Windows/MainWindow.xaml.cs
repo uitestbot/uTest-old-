@@ -22,9 +22,19 @@ namespace uTest
         public MainWindow()
         {
             ValidateResources();
+            InitializeProfile();
             InitializeComponent();
             SetVersionLabel();
             SetStartingPageInMainFrame();
+
+            var result = SettingsManager.SettingsManager.GetDefaultSetting();
+            //MessageBox.Show(String.Format("Default Settings: \n\n username: {0}, password: {1}", result.TestRailUsername, result.TestRailPassword));
+
+            var result2 = SettingsManager.SettingsManager.GetCurrentSetting();
+            //MessageBox.Show(String.Format("Current Settings: \n\n username: {0}, password: {1}", result2.TestRailUsername, result2.TestRailPassword));
+
+            dashboard.message_Label.Content = String.Format("Default Settings: \n username: {0}, password: {1}", result.TestRailUsername, result.TestRailPassword);
+            dashboard.message_Label.Content += String.Format("\n\nCurrent Settings: \n username: {0}, password: {1}", result2.TestRailUsername, result2.TestRailPassword);
         }
 
         private void ValidateResources() {
@@ -37,6 +47,18 @@ namespace uTest
                     MessageBox.Show(String.Format("Missing resource: {0}", dependency));
                     Application.Current.Shutdown();
                 }
+            }
+        }
+
+        private void InitializeProfile()
+        {
+            try
+            {
+                SettingsManager.SettingsManager.InitSettings();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
 
