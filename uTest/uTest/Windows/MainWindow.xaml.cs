@@ -1,19 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using uTest.Pages;
+using uTest.Resources;
 
 namespace uTest
 {
@@ -29,8 +21,32 @@ namespace uTest
 
         public MainWindow()
         {
+            ValidateResources();
             InitializeComponent();
+            SetVersionLabel();
+            SetStartingPageInMainFrame();
+        }
+
+        private void ValidateResources() {
+            var assemblyLocation = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+
+            foreach(String dependency in Dependencies.dependencies) 
+            {
+                if (!FileOrDirectoryExists(String.Format("{0}/{1}", assemblyLocation, dependency)))
+                {
+                    MessageBox.Show(String.Format("Missing resource: {0}", dependency));
+                    Application.Current.Shutdown();
+                }
+            }
+        }
+
+        private void SetVersionLabel()
+        {
             versionLabel.Content = String.Format("v.{0}", Assembly.GetExecutingAssembly().GetName().Version.ToString());
+        }
+
+        private void SetStartingPageInMainFrame()
+        {
             if (dashboard == null)
             {
                 dashboard = new Dashboard();
@@ -38,6 +54,12 @@ namespace uTest
             mainFrame.Content = dashboard;
         }
 
+        private bool FileOrDirectoryExists(string name)
+        {
+            return (Directory.Exists(name) || File.Exists(name));
+        }
+
+        #region NAVIGATION EVENTS
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             this.IsEnabled = false;
@@ -60,7 +82,8 @@ namespace uTest
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
         }
-
+        #endregion
+        #region MENU EVENTS
         private void Menu1Title_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             if (dashboard == null)
@@ -116,6 +139,7 @@ namespace uTest
             menu3Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
             menu4Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF127A96"));
         }
-
+        #endregion
+       
     }
 }
