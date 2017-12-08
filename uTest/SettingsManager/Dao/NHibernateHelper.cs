@@ -62,7 +62,12 @@ namespace SettingsManager.Dao
         {
             var configuration = new Configuration();
             //Loads properties from hibernate.cfg.xml
-            configuration.Configure();
+            configuration.SessionFactoryName(@"NHibernate.Test");
+            configuration.Properties[@"connection.driver_class"] = @"NHibernate.Driver.SQLite20Driver";
+            configuration.Properties[@"connection.connection_string"] = @"Data Source=profile.db;Version=3;New=True";
+            configuration.Properties[@"dialect"] = @"NHibernate.Dialect.SQLiteDialect";
+            configuration.Properties[@"show_sql"] = @"true";
+
             //Loads nhibernate mappings 
             configuration.AddDeserializedMapping(Mapping, null);
 
@@ -74,6 +79,7 @@ namespace SettingsManager.Dao
             var mapper = new ModelMapper();
             //Add the person mapping to the model mapper
             mapper.AddMappings(new List<System.Type> { typeof(SettingsMap) });
+            mapper.AddMappings(new List<System.Type> { typeof(ApplicationMap) });
             //Create and return a HbmMapping of the model mapping in code
             return mapper.CompileMappingForAllExplicitlyAddedEntities();
         }

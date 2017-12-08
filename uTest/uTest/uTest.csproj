@@ -49,6 +49,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>uTest.App</StartupObject>
@@ -234,15 +235,13 @@
   <ItemGroup>
     <None Include="FodyWeavers.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>del /S D:\output\$(TargetName).exe
 del /S D:\output\*.dll
-del /S D:\output\*.cfg.xml
 copy /Y "$(TargetDir)$(TargetName).exe" "D:\output\$(TargetName).exe"
-copy /Y "$(TargetDir)*.dll" "D:\output\*.dll"
-copy /Y "$(TargetDir)x86\*.dll" "D:\output\*.dll"
-copy /Y "$(TargetDir)*.cfg.xml" "D:\output\*cfg.xml"</PostBuildEvent>
+copy /Y "$(TargetDir)*.dll" "D:\output\*.dll"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
@@ -250,7 +249,7 @@ copy /Y "$(TargetDir)*.cfg.xml" "D:\output\*cfg.xml"</PostBuildEvent>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" BuildVersion_UseUniversalClock="True" BuildVersion_UseGlobalSettings="True" BuildVersion_UpdateFileVersion="True" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_BuildVersioningStyle="None.None.None.Increment" BuildVersion_StartDate="2017/12/5" />
+      <UserProperties BuildVersion_StartDate="2017/12/5" BuildVersion_BuildVersioningStyle="None.None.None.Increment" BuildVersion_UpdateAssemblyVersion="True" BuildVersion_UpdateFileVersion="True" BuildVersion_UseGlobalSettings="True" BuildVersion_UseUniversalClock="True" BuildVersion_AssemblyInfoFilename="Properties\AssemblyInfo.cs" />
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="..\packages\Fody.2.0.0\build\netstandard1.4\Fody.targets" Condition="Exists('..\packages\Fody.2.0.0\build\netstandard1.4\Fody.targets')" />
