@@ -2,12 +2,12 @@
 UI Test Automation Tool
 
 Roadmap:
-<br /> v1.0.0.* - Create and configure solution. (COMPLETED)
-<br /> v1.0.0.* - Create and configure WPF project. (COMPLETED)
-<br /> v1.0.0.* - Create and configure application window and related controls. (COMPLETED)
-<br /> v1.0.0.* - Create basic application pages. (COMPLETED)
-<br /> v1.0.0.* - Add pre init validations. (COMPLETED)
-<br /> v1.0.0.* - Create and develop Settings Manager. (DEVELOPING)
+<br /> v1.0.0.* - Create and configure solution. <b>(COMPLETED)</b>
+<br /> v1.0.0.* - Create and configure WPF project. <b>(COMPLETED)</b>
+<br /> v1.0.0.* - Create and configure application window and related controls. <b>(COMPLETED)</b>
+<br /> v1.0.0.* - Create basic application pages. <b>(COMPLETED)</b>
+<br /> v1.0.0.* - Add pre init validations. <b>(COMPLETED)</b>
+<br /> v1.0.0.* - Create and develop Settings Manager. <i>(DEVELOPING)</i>
 <br /> v1.0.0.* - Link data on Settings page with model from Settings Manager.
 <br /> 
 <br /> v1.0.1.* - Add resources loading progress window.
