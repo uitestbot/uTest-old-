@@ -28,13 +28,13 @@ namespace SettingsManager.Dao
         /// <summary>
         /// Save settings entity
         /// </summary>
-        /// <param name="Settings">settings</param>
+        /// <param name="settings">settings</param>
         void Save(Settings settings);
 
         /// <summary>
         /// Update settings entity
         /// </summary>
-        /// <param name="person">person</param>
+        /// <param name="settings">settings</param>
         void Update(Settings settings);
 
         /// <summary>

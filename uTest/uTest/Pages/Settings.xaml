@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:uTest.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="550" d:DesignWidth="886"
-      Title="Settings" Background="#FF222222" KeyUp="Page_KeyUp" MouseLeftButtonUp="Page_MouseLeftButtonUp">
+      Title="Settings" Background="#FF222222" KeyUp="Page_KeyUp">
 
     <Grid>
         <Rectangle x:Name="TestRailGroup" HorizontalAlignment="Left" Height="244" Margin="39,10,0,0" VerticalAlignment="Top" Width="412" Stroke="#FF127A96" StrokeThickness="1" StrokeDashArray="4 4"/>
@@ -24,7 +24,7 @@
         <Label x:Name="RepeatTestLabel" Content="Repeat test if failed" HorizontalAlignment="Left" Height="36" Margin="522,86,0,0" VerticalAlignment="Top" Width="195" Foreground="#FF127A96" FontSize="18" HorizontalContentAlignment="Left" />
         <Label x:Name="SpeedMultiplierLabel" Content="Speed multiplier" HorizontalAlignment="Left" Height="36" Margin="522,122,0,0" VerticalAlignment="Top" Width="195" Foreground="#FF127A96" FontSize="18" HorizontalContentAlignment="Left" />
         <Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="286,510,0,0" VerticalAlignment="Top" Width="124" RenderTransformOrigin="0.493,0.5" Click="SaveButton_Click" IsEnabled="False"/>
-        <Button x:Name="ResetButton" Content="Reset to the default values" HorizontalAlignment="Left" Margin="432,510,0,0" VerticalAlignment="Top" Width="199" RenderTransformOrigin="0.493,0.5" IsEnabled="False"/>
+        <Button x:Name="ResetButton" Content="Reset to the default values" HorizontalAlignment="Left" Margin="432,510,0,0" VerticalAlignment="Top" Width="199" RenderTransformOrigin="0.493,0.5" IsEnabled="False" Click="ResetButton_Click"/>
 
         <Slider x:Name="RepeatTestSlider" IsSnapToTickEnabled="True" HorizontalAlignment="Left" Margin="701,96,0,0" VerticalAlignment="Top" Value="2" Minimum="1" Maximum="4" SmallChange="1" Width="84" Cursor="Hand" Foreground="#FF127A8F" ValueChanged="Slider_ValueChanged"/>
         <TextBox x:Name="RepeatTestTextBox" Text="{Binding ElementName=RepeatTestSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" Margin="791,90,57,430" HorizontalContentAlignment="Center" IsEnabled="False" />

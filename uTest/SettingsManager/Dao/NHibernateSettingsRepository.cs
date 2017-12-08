@@ -15,8 +15,15 @@ namespace SettingsManager.Dao
             using (ISession session = NHibernateHelper.OpenSession())
             using (ITransaction transaction = session.BeginTransaction())
             {
-                session.Save(settings);
-                transaction.Commit();
+                try
+                {
+                    session.Save(settings);
+                    transaction.Commit();
+                }
+                catch
+                {
+                    transaction.Rollback();
+                }
             }
         }
 
@@ -47,8 +54,15 @@ namespace SettingsManager.Dao
             using (ISession session = NHibernateHelper.OpenSession())
             using (ITransaction transaction = session.BeginTransaction())
             {
-                session.Update(settings);
-                transaction.Commit();
+                try
+                {
+                    session.Update(settings);
+                    transaction.Commit();
+                }
+                catch
+                {
+                    transaction.Rollback();
+                }
             }
         }
 

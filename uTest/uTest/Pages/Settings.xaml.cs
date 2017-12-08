@@ -21,9 +21,15 @@ namespace uTest.Pages
             {
                 InitializeComponent();
             }
+            ManagePageData();
+            SetInitialProperties();
+        }
+
+        #region data mapping
+        private void ManagePageData()
+        {
             ManageSetTestRailGroup();
             ManageExecutionGroup();
-            SetInitialProperties();
         }
 
         private void ManageSetTestRailGroup()
@@ -43,74 +49,115 @@ namespace uTest.Pages
             DefaultTimeoutTextBox.Text = SettingsManager.SettingsManager.Settings.DefaultTimeout.ToString();
         }
 
-        private void SetInitialProperties()
-        {
-            SaveButton.IsEnabled = false;
-        }
-
-        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
-        }
-
-        private void SaveButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            UpdateSettingsModel();
-
-            SettingsManager.SettingsManager.SaveSettings();
-            SaveButton.IsEnabled = false;
-        }
-
         private void UpdateSettingsModel()
         {
             SettingsManager.SettingsManager.Settings.TestRailUrl = TestRailHostTextBox.Text;
             SettingsManager.SettingsManager.Settings.TestRailUsername = TestRailUserNameTextBox.Text;
             SettingsManager.SettingsManager.Settings.TestRailPassword = TestRailPasswordBox.Password;
-            SettingsManager.SettingsManager.Settings.IsTestRailReportEnabled = (bool) ReportCheckbox.IsChecked;
-            SettingsManager.SettingsManager.Settings.RerunIfFailed = (int) RepeatTestSlider.Value;
-            SettingsManager.SettingsManager.Settings.SpeedMultiplier = (int) SpeedMultiplierSlider.Value;
+            SettingsManager.SettingsManager.Settings.IsTestRailReportEnabled = (bool)ReportCheckbox.IsChecked;
+            SettingsManager.SettingsManager.Settings.RerunIfFailed = (int)RepeatTestSlider.Value;
+            SettingsManager.SettingsManager.Settings.SpeedMultiplier = SpeedMultiplierSlider.Value;
             SettingsManager.SettingsManager.Settings.DefaultTimeout = Int32.Parse(DefaultTimeoutTextBox.Text);
+        }
+        #endregion
+        #region init
+        private void SetInitialProperties()
+        {
+            SaveButton.IsEnabled = false;
+            ResetButton.IsEnabled = false;
+            if (SettingsManager.SettingsManager.Settings.Id > 1)
+            {
+                ResetButton.IsEnabled = true;
+            }
+        }
+        #endregion
+        #region events
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateSettingsModel();
+
+            if (SettingsManager.SettingsManager.Settings.Id == 1)
+            {
+                SettingsManager.SettingsManager.SaveSettings();
+            }
+            else
+            {
+                SettingsManager.SettingsManager.UpdateSettings();
+            }
+
+            SettingsManager.SettingsManager.DefaultSettings = SettingsManager.SettingsManager.GetDefaultSetting();
+            SettingsManager.SettingsManager.Settings = SettingsManager.SettingsManager.GetCurrentSetting();
+
+            SaveButton.IsEnabled = false;
+            ResetButton.IsEnabled = true;
         }
 
         private void Page_KeyUp(object sender, KeyEventArgs e)
         {
-            if (!IsInitialized)
-            {
-                InitializeComponent();
-            }
-            if (SaveButton == null) return;
-            if (SaveButton.IsEnabled) return;
-
-            SaveButton.IsEnabled = true;
-        }
-
-        private void Page_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
             EnableSaveButton();
+            EnableResetButton();
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             EnableSaveButton();
+            EnableResetButton();
         }
 
         private void ReportCheckbox_Click(object sender, RoutedEventArgs e)
         {
             EnableSaveButton();
+            EnableResetButton();
         }
 
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteSettings();
+
+            SettingsManager.SettingsManager.Settings = SettingsManager.SettingsManager.DefaultSettings;
+
+            ManagePageData();
+            DisabledButtons();
+        }
+
+        private void DeleteSettings()
+        {
+            if (SettingsManager.SettingsManager.Settings.Id > 1)
+            {
+                SettingsManager.SettingsManager.DeleteSettings();
+            }
+        }
+        #endregion
+        #region button enabling/disabling
         private void EnableSaveButton()
         {
-            if (!IsInitialized)
-            {
-                InitializeComponent();
-            }
             if (SaveButton == null) return;
             if (SaveButton.IsEnabled) return;
 
             SaveButton.IsEnabled = true;
         }
 
+        private void EnableResetButton()
+        {
+            if (ResetButton == null) return;
+            if (ResetButton.IsEnabled) return;
+
+            ResetButton.IsEnabled = true;
+        }
+
+        private void DisabledButtons()
+        {
+            ResetButton.IsEnabled = false;
+            SaveButton.IsEnabled = false;
+        }
+        #endregion
+        #region validators
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+        #endregion
     }
+
 }

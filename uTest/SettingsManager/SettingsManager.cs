@@ -96,7 +96,7 @@ namespace SettingsManager
         private static void InitDefaultValues()
         {
             if (!File.Exists(@"profile.db")) return;
-            if (SettingsRepository.RowCount() > 1) return;
+            if (SettingsRepository.RowCount() > 0) return;
 
             SettingsRepository.Save(new Settings
             {
@@ -125,26 +125,24 @@ namespace SettingsManager
             Settings = GetCurrentSetting();
         }
 
+        public static void UpdateSettings()
+        {
+            SettingsRepository.Update(Settings);
+        }
+
         public static void SaveSettings()
         {
             SettingsRepository.Save(Settings);
         }
 
+        public static void DeleteSettings()
+        {
+            SettingsRepository.Delete(Settings);
+        }
+
         public static void AddTestValues()
         {
             if (!File.Exists(@"profile.db")) return;
-            if (SettingsRepository.RowCount() > 1) return;
-
-            SettingsRepository.Save(new Settings
-            {
-                TestRailUrl = @"http://10.0.33.57/",
-                TestRailUsername = @"andrei.hreapca@comodo.com",
-                TestRailPassword = @"test4",
-                IsTestRailReportEnabled = true,
-                RerunIfFailed = 2,
-                SpeedMultiplier = 1,
-                DefaultTimeout = 30
-            });
 
             if (ApplicationRepository.RowCount() > 0) return;
             ApplicationRepository.Save(new Application

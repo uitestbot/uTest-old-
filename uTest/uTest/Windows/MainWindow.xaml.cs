@@ -46,7 +46,6 @@ namespace uTest
             try
             {
                 SettingsManager.SettingsManager.InitSettings();
-                SettingsManager.SettingsManager.AddTestValues();
             }
             catch (Exception ex)
             {
