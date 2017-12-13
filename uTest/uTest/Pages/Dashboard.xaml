@@ -9,7 +9,8 @@
       Title="Dashboard">
 
     <Grid>
-        <Label x:Name="message_Label" Content="Under construction dashboard page" HorizontalAlignment="Left" Height="268" Margin="165,102,0,0" VerticalAlignment="Top" Width="571" Foreground="#FF127A96" FontSize="16"/>
+        <Label x:Name="message_Label" Content="Under construction dashboard page" HorizontalAlignment="Left" Height="121" Margin="165,102,0,0" VerticalAlignment="Top" Width="571" Foreground="#FF127A96" FontSize="16"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="380,268,0,0" VerticalAlignment="Top" Width="74" Click="Button_Click"/>
 
     </Grid>
 </Page>

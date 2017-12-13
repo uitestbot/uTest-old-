@@ -20,9 +20,17 @@ namespace uTest.Pages
     /// </summary>
     public partial class Dashboard : Page
     {
+        public MainWindow mainWindow = Application.Current.MainWindow as MainWindow;
+
         public Dashboard()
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            mainWindow.ShowErrorNotificationWindow(mainWindow);
+        }
     }
+
 }

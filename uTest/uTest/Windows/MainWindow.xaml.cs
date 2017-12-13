@@ -29,15 +29,22 @@ namespace uTest
         }
 
         private void ValidateResources() {
-            var assemblyLocation = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-
-            foreach(String dependency in Dependencies.dependencies) 
+            try
             {
-                if (!FileOrDirectoryExists(String.Format("{0}/{1}", assemblyLocation, dependency)))
+                var assemblyLocation = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+
+                foreach (String dependency in Dependencies.dependencies)
                 {
-                    MessageBox.Show(String.Format("Missing resource: {0}", dependency));
-                    Application.Current.Shutdown();
+                    if (!FileOrDirectoryExists(String.Format("{0}/{1}", assemblyLocation, dependency)))
+                    {
+                        MessageBox.Show(String.Format("Missing resource: {0}", dependency));
+                        Application.Current.Shutdown();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
             }
         }
 
@@ -49,13 +56,20 @@ namespace uTest
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
+                HandleException(ex);
             }
         }
 
         private void SetVersionLabel()
         {
-            versionLabel.Content = String.Format("v.{0}", Assembly.GetExecutingAssembly().GetName().Version.ToString());
+            try
+            {
+                versionLabel.Content = String.Format("v.{0}", Assembly.GetExecutingAssembly().GetName().Version.ToString());
+            }
+            catch (Exception ex)
+            {
+                HandleException(ex);
+            }
         }
 
         private void SetStartingPageInMainFrame()
@@ -76,13 +90,14 @@ namespace uTest
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             this.IsEnabled = false;
-
+           
             ExitConfirmation exitConfirmation = new ExitConfirmation();
             exitConfirmation.OwningWindow = this;
             exitConfirmation.Show();
 
-            exitConfirmation.Left = this.Left + (this.Width - exitConfirmation.ActualWidth) / 2;
-            exitConfirmation.Top = this.Top + (this.Height - exitConfirmation.ActualHeight) / 2;
+            //exitConfirmation.Left = this.Left + (this.Width - exitConfirmation.ActualWidth) / 2;
+            //exitConfirmation.Top = this.Top + (this.Height - exitConfirmation.ActualHeight) / 2;
+
         }
 
         private void MinimizeButton_Click(object sender, RoutedEventArgs e)
@@ -104,11 +119,7 @@ namespace uTest
                 dashboard = new Dashboard();
             }
             mainFrame.Content = dashboard;
-
-            menu1Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF127A96"));
-            menu2Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
-            menu3Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
-            menu4Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
+            SetActiveMenuDecoration("dashboard");
         }
 
         private void Menu2Title_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -118,11 +129,7 @@ namespace uTest
                 history = new History();
             }
             mainFrame.Content = history;
-
-            menu1Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
-            menu2Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF127A96"));
-            menu3Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
-            menu4Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
+            SetActiveMenuDecoration("history");
         }
 
         private void Menu3Title_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -132,11 +139,7 @@ namespace uTest
                 implement = new Implement();
             }
             mainFrame.Content = implement;
-
-            menu1Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
-            menu2Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
-            menu3Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF127A96"));
-            menu4Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
+            SetActiveMenuDecoration("implement");
         }
 
         private void Menu4Title_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -146,13 +149,86 @@ namespace uTest
                 settings = new Settings();
             }
             mainFrame.Content = settings;
+            SetActiveMenuDecoration("settings");
+        }
 
+        public void SetActiveMenuDecoration(string menuItem)
+        {
             menu1Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
             menu2Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
             menu3Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
-            menu4Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF127A96"));
+            menu4Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF222222"));
+
+            switch (menuItem)
+            {
+                case "dashboard": menu1Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF127A96")); break;
+                case "history": menu2Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF127A96")); break;
+                case "implement": menu3Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF127A96")); break;
+                case "settings": menu4Decoration.Fill = (SolidColorBrush)(new BrushConverter().ConvertFrom("#FF127A96")); break;
+            }
         }
         #endregion
-       
+        #region GET PAGES
+        public Dashboard GetDashboard()
+        {
+            if (dashboard == null)
+            {
+                dashboard = new Dashboard();
+            }
+
+            return dashboard;
+        }
+
+        public History GetHistory()
+        {
+            if (history == null)
+            {
+                history = new History();
+            }
+
+            return history;
+        }
+
+        public Implement GetImplement()
+        {
+            if (implement == null)
+            {
+                implement = new Implement();
+            }
+
+            return implement;
+        }
+
+        public Settings GetSettings()
+        {
+            if (settings == null)
+            {
+                settings = new Settings();
+            }
+
+            return settings;
+        }
+        #endregion
+        #region EXCEPTION HANDLING
+        private void HandleException(Exception ex)
+        {
+            ShowErrorNotificationWindow(this);
+        }
+    
+        public void ShowErrorNotificationWindow(Window window)
+        {
+            this.IsEnabled = false;
+
+            ErrorNotification errorNotification = new ErrorNotification();
+            errorNotification.OwningWindow = this;
+
+            //errorNotification.Left = this.Left + (this.Width - errorNotification.ActualWidth) / 2;
+            //errorNotification.Top = this.Top + (this.Height - errorNotification.ActualHeight) / 2;
+
+            errorNotification.Show();
+        }
+        #endregion
+
+
     }
 }

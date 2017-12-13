@@ -3,10 +3,6 @@ using System.Windows.Input;
 using System.Text.RegularExpressions;
 using System;
 using System.Windows;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Documents;
-using System.Windows.Media;
 
 namespace uTest.Pages
 {

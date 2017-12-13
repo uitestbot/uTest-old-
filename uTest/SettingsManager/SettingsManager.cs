@@ -25,7 +25,7 @@ namespace SettingsManager
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error getting current settings!", ex);
             }
         }
 
@@ -39,7 +39,7 @@ namespace SettingsManager
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error getting default settings!", ex);
             }
         }
 
@@ -53,7 +53,7 @@ namespace SettingsManager
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error getting application list!", ex);
             }
         }
 
@@ -71,7 +71,7 @@ namespace SettingsManager
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception("Error initializing profile!", ex);
             }
         }
 
@@ -89,8 +89,15 @@ namespace SettingsManager
         {
             if (File.Exists(@"profile.db")) return;
 
-            var schemaUpdate = new SchemaUpdate(NHibernateHelper.Configuration);
-            schemaUpdate.Execute(false, true);
+            try
+            {
+                var schemaUpdate = new SchemaUpdate(NHibernateHelper.Configuration);
+                schemaUpdate.Execute(false, true);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error creating profile!", ex);
+            }
         }
 
         private static void InitDefaultValues()

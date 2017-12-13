@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:uTest"
         mc:Ignorable="d"
-        Title="uTest" Height="650" Width="1100" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#FF222222" WindowStyle="None" MouseDown="Window_MouseDown" BorderBrush="#FF127A96" BorderThickness="1">
+        Title="uTest" Height="650" Width="1100" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Background="#FF222222" WindowStyle="None" BorderBrush="#FF127A96" BorderThickness="1">
     <Window.Resources>
         <Style x:Key="LabelMouseOver" TargetType="Label">
             <Setter Property= "Foreground" Value="#FFBABABA" />
