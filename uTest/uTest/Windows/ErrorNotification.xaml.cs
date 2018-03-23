@@ -28,6 +28,8 @@ namespace uTest
             if (e.Key == Key.O)
             {
                 OwningWindow.IsEnabled = true;
+                OwningWindow.mainFrame.Content = OwningWindow.GetHistory();
+                OwningWindow.SetActiveMenuDecoration("history");
                 this.Close();
             }
         }
